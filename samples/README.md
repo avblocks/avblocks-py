@@ -8,7 +8,7 @@ All samples are installed as command-line tools when you install the package:
 
 ```bash
 # Install the package in development mode
-pip install -e .
+pip install --editable .
 
 # Run any sample
 dec-aac-adts-file --help
@@ -17,7 +17,7 @@ dec-aac-adts-file --help
 Or run directly with Python:
 
 ```bash
-python -m samples.dec-aac-adts-file.dec-aac-adts-file --help
+python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 ```
 
 ## Sample Categories
@@ -79,7 +79,7 @@ python -m samples.dec-aac-adts-file.dec-aac-adts-file --help
 | Sample | Description |
 |--------|-------------|
 | [enc_preset_file](enc_preset_file/) | Encode using AVBlocks presets |
-| [re_encode](re_encode/) | Re-encode media with optional forced re-encoding |
+| [re_encode](re_encode/) | Remux media with optional forced re-encoding |
 | [slideshow](slideshow/) | Create video slideshow from images |
 
 ## Processing Modes
