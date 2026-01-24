@@ -399,8 +399,6 @@ See [samples/README.md](./samples/README.md) for a complete list of working exam
 
 ### Linux
 
-### Download AVBlocks Core and Assets
-
 1. [Download Core and Assets on Linux](./docs/download-avblocks-core-and-assets-linux.md)
 2. [Setup for Linux](./docs/setup-linux.md)
 
