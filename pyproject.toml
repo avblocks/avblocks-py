@@ -1,0 +1,64 @@
+[project]
+name = "avblocks"
+version = "0.1.0"
+description = "Python bindings for AVBlocks"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "click==8.2.1",
+]
+
+[project.scripts]
+# Audio Decoding
+dec-aac-adts-file = "samples.dec_aac_adts_file.dec_aac_adts_file:main"
+dec-aac-adts-pull = "samples.dec_aac_adts_pull.dec_aac_adts_pull:main"
+dec-g711-alaw-file = "samples.dec_g711_alaw_file.dec_g711_alaw_file:main"
+dec-g711-ulaw-file = "samples.dec_g711_ulaw_file.dec_g711_ulaw_file:main"
+dec-mp3-file = "samples.dec_mp3_file.dec_mp3_file:main"
+
+# Video Decoding
+dec-avc-file = "samples.dec_avc_file.dec_avc_file:main"
+dec-avc-pull = "samples.dec_avc_pull.dec_avc_pull:main"
+dec-avc-au = "samples.dec_avc_au.dec_avc_au:main"
+
+# Audio Encoding
+enc-aac-adts-file = "samples.enc_aac_adts_file.enc_aac_adts_file:main"
+enc-aac-adts-pull = "samples.enc_aac_adts_pull.enc_aac_adts_pull:main"
+enc-aac-adts-push = "samples.enc_aac_adts_push.enc_aac_adts_push:main"
+enc-g711-alaw-file = "samples.enc_g711_alaw_file.enc_g711_alaw_file:main"
+enc-g711-ulaw-file = "samples.enc_g711_ulaw_file.enc_g711_ulaw_file:main"
+enc-mp3-file = "samples.enc_mp3_file.enc_mp3_file:main"
+enc-mp3-pull = "samples.enc_mp3_pull.enc_mp3_pull:main"
+enc-mp3-push = "samples.enc_mp3_push.enc_mp3_push:main"
+
+# Video Encoding
+enc-avc-file = "samples.enc_avc_file.enc_avc_file:main"
+enc-avc-pull = "samples.enc_avc_pull.enc_avc_pull:main"
+
+# Container Operations
+demux-mp4-file = "samples.demux_mp4_file.demux_mp4_file:main"
+mux-mp4-file = "samples.mux_mp4_file.mux_mp4_file:main"
+
+# Media Information
+info-stream-file = "samples.info_stream_file.info_stream_file:main"
+info-metadata-file = "samples.info_metadata_file.info_metadata_file:main"
+
+# Utilities
+enc-preset-file = "samples.enc_preset_file.enc_preset_file:main"
+re-encode = "samples.re_encode.re_encode:main"
+slideshow = "samples.slideshow.slideshow:main"
+
+[dependency-groups]
+dev = [
+    "pylint>=3.3.7",
+    "pytest>=8.3.5",
+    "pytest-asyncio>=1.0.0",
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.14",
+    "mkdocstrings[python]>=0.29.1",
+    "pymdown-extensions>=10.16",
+]
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["avblocks*", "samples*"]

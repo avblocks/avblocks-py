@@ -1,0 +1,29 @@
+[MESSAGES CONTROL]
+disable=
+    # Formatting
+    C0103,  # invalid-name
+    C0114,  # missing-module-docstring
+    C0115,  # missing-class-docstring
+    C0116,  # missing-function-docstring
+    C0302,  # too-many-lines
+    C0303,  # trailing-whitespace
+    C0304,  # missing-final-newline
+
+    # Warnings
+    E1120,  # no-value-for-parameter (false positive with click decorators)
+    R0401,  # cyclic-import (acceptable for type hints)
+    R0801,  # duplicate-code  
+    R0902,  # too-many-instance-attributes
+    R0903,  # too-few-public-methods
+    R0912,  # too-many-branches
+    R0913,  # too-many-arguments
+    R0914,  # too-many-locals
+    R0915,  # too-many-statements
+    R0917,  # too-many-positional-arguments
+    R1702,  # too-many-nested-blocks
+    W0511,  # fixme
+    W1514,  # unspecified-encoding
+    W0718,  # broad-exception-caught
+
+[FORMAT]
+max-line-length=200

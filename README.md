@@ -1,2 +1,3 @@
 # avblocks-py
-AVBlocks Python SDK (CLI Samples)
+
+AVBlocks Python SDK

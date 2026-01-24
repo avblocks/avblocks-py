@@ -1,0 +1,21 @@
+{
+    "pylint.ignorePatterns": [
+        "${workspaceFolder}/tests/**"
+    ],
+
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true,
+
+    "python.testing.pytestArgs": [
+        "-sv",
+        "tests"
+    ],
+
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src/**",
+        "${workspaceFolder}/samples/**"
+    ],
+    
+    "python.terminal.activateEnvironment": true,
+    "python.defaultInterpreterPath": ".venv/bin/python"
+}
