@@ -147,14 +147,7 @@ from avblocks import (MediaSocket, MediaPin, VideoStreamInfo,
                       Transcoder, StreamType, ColorFormat, ScanType)
 
 # Create input socket for raw YUV
-in_socket = MediaSocket()
-in_socket.stream_type = StreamType.UncompressedVideo
-in_socket.file = "input.yuv"
-
-in_pin = MediaPin()
 in_vsi = VideoStreamInfo()
-in_pin.stream_info = in_vsi
-
 in_vsi.stream_type = StreamType.UncompressedVideo
 in_vsi.scan_type = ScanType.Progressive
 in_vsi.frame_width = 176
@@ -162,22 +155,27 @@ in_vsi.frame_height = 144
 in_vsi.color_format = ColorFormat.YUV420
 in_vsi.frame_rate = 30.0
 
+in_pin = MediaPin()
+in_pin.stream_info = in_vsi
+
+in_socket = MediaSocket()
+in_socket.stream_type = StreamType.UncompressedVideo
+in_socket.file = "input.yuv"
 in_socket.pins.add(in_pin)
 
 # Create output socket for H.264
-out_socket = MediaSocket()
-out_socket.file = "output.h264"
-out_socket.stream_type = StreamType.H264
-
-out_pin = MediaPin()
 out_vsi = VideoStreamInfo()
-out_pin.stream_info = out_vsi
-
 out_vsi.stream_type = StreamType.H264
 out_vsi.frame_width = 176
 out_vsi.frame_height = 144
 out_vsi.frame_rate = 30.0
 
+out_pin = MediaPin()
+out_pin.stream_info = out_vsi
+
+out_socket = MediaSocket()
+out_socket.stream_type = StreamType.H264
+out_socket.file = "output.h264"
 out_socket.pins.add(out_pin)
 
 # Encode
@@ -221,21 +219,20 @@ from avblocks import (MediaSocket, MediaPin, VideoStreamInfo,
 
 # Create input socket for H.264
 in_socket = MediaSocket()
-in_socket.file = "input.h264"
 in_socket.stream_type = StreamType.H264
+in_socket.file = "input.h264"
 
 # Create output socket for raw YUV
-out_socket = MediaSocket()
-out_socket.file = "output.yuv"
-out_socket.stream_type = StreamType.UncompressedVideo
-
-out_pin = MediaPin()
 out_vsi = VideoStreamInfo()
-out_pin.stream_info = out_vsi
-
 out_vsi.stream_type = StreamType.UncompressedVideo
 out_vsi.color_format = ColorFormat.YUV420
 
+out_pin = MediaPin()
+out_pin.stream_info = out_vsi
+
+out_socket = MediaSocket()
+out_socket.stream_type = StreamType.UncompressedVideo
+out_socket.file = "output.yuv"
 out_socket.pins.add(out_pin)
 
 # Decode
@@ -258,9 +255,9 @@ in_socket = MediaSocket()
 in_socket.file = "input.wav"
 
 out_socket = MediaSocket()
-out_socket.file = "output.aac"
 out_socket.stream_type = StreamType.Aac
 out_socket.stream_sub_type = StreamSubType.AacAdts
+out_socket.file = "output.aac"
 
 transcoder = Transcoder()
 transcoder.inputs.add(in_socket)
@@ -298,23 +295,24 @@ if transcoder.open():
 from avblocks import MediaSocket, Transcoder, StreamType
 
 # Extract video and audio streams from MP4
-transcoder = Transcoder()
 
 # Input
 in_socket = MediaSocket()
 in_socket.file = "input.mp4"
-transcoder.inputs.add(in_socket)
 
 # Output for video stream
 video_out = MediaSocket()
-video_out.file = "video.mp4"
 video_out.stream_type = StreamType.H264
-transcoder.outputs.add(video_out)
+video_out.file = "video.mp4"
 
 # Output for audio stream
 audio_out = MediaSocket()
 audio_out.file = "audio.mp4"
 audio_out.stream_type = StreamType.Aac
+
+transcoder = Transcoder()
+transcoder.inputs.add(in_socket)
+transcoder.outputs.add(video_out)
 transcoder.outputs.add(audio_out)
 
 if transcoder.open():
@@ -327,21 +325,22 @@ if transcoder.open():
 from avblocks import MediaSocket, Transcoder
 
 # Combine separate audio and video files into MP4 container
-transcoder = Transcoder()
 
 # Video input
 video_in = MediaSocket()
 video_in.file = "video.h264.mp4"
-transcoder.inputs.add(video_in)
 
 # Audio input
 audio_in = MediaSocket()
 audio_in.file = "audio.aac.mp4"
-transcoder.inputs.add(audio_in)
 
 # Combined output
 out_socket = MediaSocket()
 out_socket.file = "output.mp4"
+
+transcoder = Transcoder()
+transcoder.inputs.add(video_in)
+transcoder.inputs.add(audio_in)
 transcoder.outputs.add(out_socket)
 
 if transcoder.open():
