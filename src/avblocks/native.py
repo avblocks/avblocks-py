@@ -803,7 +803,7 @@ class NativeLibrary:
         
         # Transcoder callback types
         TranscoderProgressCallback = ctypes.CFUNCTYPE(None, c_double, c_double, c_void_p)
-        TranscoderContinueCallback = ctypes.CFUNCTYPE(c_bool, c_double, c_void_p)
+        TranscoderContinueCallback = ctypes.CFUNCTYPE(c_int32, c_double, c_void_p)
         TranscoderStatusCallback = ctypes.CFUNCTYPE(None, c_int32, c_void_p)
         TranscoderInputChangeCallback = ctypes.CFUNCTYPE(None, c_int32, c_void_p)
         

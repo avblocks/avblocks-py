@@ -125,13 +125,13 @@ class Transcoder(Block):
         lib.Transcoder_setProgressCallback(self._native_ref, native_progress_callback, None)
         
         # Continue callback
-        @ctypes.CFUNCTYPE(ctypes.c_bool, ctypes.c_double, ctypes.c_void_p)
+        @ctypes.CFUNCTYPE(ctypes.c_int32, ctypes.c_double, ctypes.c_void_p)
         def native_continue_callback(current_time, callback_param):
             if self.on_continue:
                 args = TranscoderContinueEventArgs(current_time)
                 self.on_continue(args)
-                return args.continue_transcoding
-            return True
+                return 1 if args.continue_transcoding else 0
+            return 1
         
         self._native_continue_callback = native_continue_callback
         lib.Transcoder_setContinueCallback(self._native_ref, native_continue_callback, None)

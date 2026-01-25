@@ -9,13 +9,13 @@ Write-Host "Python ..."
 uv python install
 
 # Create and activate virtual environment
-uv venv --allow-existing .venv
+uv venv --allow-existing .venv --link-mode copy
 
 # Activate virtual environment
 .\.venv\Scripts\Activate.ps1
 
 # Install dependencies
-uv pip install --editable .
-uv pip install --group dev
+uv pip install --editable . --link-mode copy
+uv pip install --group dev --link-mode copy
 
 Pop-Location
