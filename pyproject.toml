@@ -1,6 +1,6 @@
 [project]
 name = "avblocks"
-version = "0.1.0"
+version = "3.3.0.1"
 description = "Python bindings for AVBlocks"
 readme = "README.md"
 requires-python = ">=3.12"
