@@ -10,6 +10,8 @@ info-metadata-file --input <any_media_file>
 
 ### Examples
 
+#### Bash
+
 List options:
 
 ```sh
@@ -20,5 +22,20 @@ Extract the metadata from the `./assets/aud/Hydrate-Kenny_Beltrey.ogg` song:
 
 ```sh
 info-metadata-file \
+    --input ./assets/aud/Hydrate-Kenny_Beltrey.ogg
+```
+
+#### PowerShell
+
+List options:
+
+```powershell
+info-metadata-file --help
+```
+
+Extract the metadata from the `./assets/aud/Hydrate-Kenny_Beltrey.ogg` song:
+
+```powershell
+info-metadata-file `
     --input ./assets/aud/Hydrate-Kenny_Beltrey.ogg
 ```

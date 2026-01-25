@@ -10,6 +10,8 @@ slideshow --input <directory> --output <filename_without_extension> --preset <pr
 
 ### Examples
 
+#### Bash
+
 List options:
 
 ```sh
@@ -30,5 +32,30 @@ mkdir -p ./output/slideshow
 slideshow \
     --input ./assets/img \
     --output ./output/slideshow/cube \
+    --preset mp4.h264.aac
+```
+
+#### PowerShell
+
+List options:
+
+```powershell
+slideshow --help
+```
+
+List supported presets:
+
+```powershell
+slideshow --presets
+```
+
+Create an MP4 / H.264 clip from a sequence of images in the `./assets/img` folder using the `mp4.h264.aac` preset:
+
+```powershell
+New-Item -ItemType Directory -Force -Path ./output/slideshow
+
+slideshow `
+    --input ./assets/img `
+    --output ./output/slideshow/cube `
     --preset mp4.h264.aac
 ```

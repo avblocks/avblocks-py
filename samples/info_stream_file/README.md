@@ -10,6 +10,8 @@ info-stream-file --input <any_media_file>
 
 ### Examples
 
+#### Bash
+
 List options:
 
 ```sh
@@ -20,5 +22,20 @@ List the audio and video streams of the `./assets/mov/big_buck_bunny_trailer.mp4
 
 ```sh
 info-stream-file \
+    --input ./assets/mov/big_buck_bunny_trailer.mp4
+```
+
+#### PowerShell
+
+List options:
+
+```powershell
+info-stream-file --help
+```
+
+List the audio and video streams of the `./assets/mov/big_buck_bunny_trailer.mp4` movie trailer:
+
+```powershell
+info-stream-file `
     --input ./assets/mov/big_buck_bunny_trailer.mp4
 ```

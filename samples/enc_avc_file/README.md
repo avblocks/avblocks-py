@@ -10,6 +10,8 @@ enc-avc-file --frame <width>x<height> --rate <fps> --color <color> --input <file
 
 ### Examples
 
+#### Bash
+
 List options:
 
 ```sh
@@ -30,5 +32,30 @@ mkdir -p ./output/enc_avc_file
 enc-avc-file \
     --input ./assets/vid/foreman_qcif.yuv \
     --output ./output/enc_avc_file/foreman_qcif.h264 \
+    --frame 176x144 --rate 30 --color yuv420
+```
+
+#### PowerShell
+
+List options:
+
+```powershell
+enc-avc-file --help
+```
+
+List supported color spaces for input:
+
+```powershell
+enc-avc-file --colors
+```
+
+Encode the input file `./assets/vid/foreman_qcif.yuv` into output file `./output/enc_avc_file/foreman_qcif.h264`:
+
+```powershell
+New-Item -ItemType Directory -Force -Path ./output/enc_avc_file
+
+enc-avc-file `
+    --input ./assets/vid/foreman_qcif.yuv `
+    --output ./output/enc_avc_file/foreman_qcif.h264 `
     --frame 176x144 --rate 30 --color yuv420
 ```
