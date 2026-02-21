@@ -150,7 +150,7 @@ def main(input_file: str, output_dir: str):
     # Set default options if not provided
     if not input_file:
         script_dir = os.path.dirname(os.path.abspath(__file__))
-        input_file = os.path.join(script_dir, "../assets/aud/Hydrate-Kenny_Beltrey.ogg")
+        input_file = os.path.join(script_dir, "../../assets/aud/Hydrate-Kenny_Beltrey.ogg")
         
         print("Using default options:")
         print(f"  --input {input_file}")

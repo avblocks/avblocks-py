@@ -31,6 +31,8 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 | [dec_g711_alaw_file](dec_g711_alaw_file/) | Decode G.711 A-law to WAV |
 | [dec_g711_ulaw_file](dec_g711_ulaw_file/) | Decode G.711 μ-law to WAV |
 | [dec_mp3_file](dec_mp3_file/) | Decode MP3 to WAV |
+| [dec_opus_file](dec_opus_file/) | Decode Opus to WAV |
+| [dec_vorbis_file](dec_vorbis_file/) | Decode Vorbis to WAV |
 
 ### Video Decoding
 
@@ -39,6 +41,10 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 | [dec_avc_file](dec_avc_file/) | Decode H.264/AVC to raw YUV |
 | [dec_avc_pull](dec_avc_pull/) | Decode H.264/AVC to YUV using pull mode |
 | [dec_avc_au](dec_avc_au/) | Decode H.264 access units from directory |
+| [dec_hevc_file](dec_hevc_file/) | Decode H.265/HEVC to raw YUV |
+| [dec_hevc_au](dec_hevc_au/) | Decode H.265 access units from directory |
+| [dec_vp8_file](dec_vp8_file/) | Decode VP8 (IVF) to raw YUV |
+| [dec_vp9_file](dec_vp9_file/) | Decode VP9 (IVF) to raw YUV |
 
 ### Audio Encoding
 
@@ -52,6 +58,8 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 | [enc_mp3_file](enc_mp3_file/) | Encode WAV to MP3 |
 | [enc_mp3_pull](enc_mp3_pull/) | Encode WAV to MP3 using pull mode |
 | [enc_mp3_push](enc_mp3_push/) | Encode WAV to MP3 using push mode |
+| [enc_opus_file](enc_opus_file/) | Encode WAV to Opus (OGG) |
+| [enc_vorbis_file](enc_vorbis_file/) | Encode WAV to Vorbis (OGG) |
 
 ### Video Encoding
 
@@ -59,6 +67,10 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 |--------|-------------|
 | [enc_avc_file](enc_avc_file/) | Encode raw YUV to H.264/AVC |
 | [enc_avc_pull](enc_avc_pull/) | Encode raw YUV to H.264 using pull mode |
+| [enc_hevc_file](enc_hevc_file/) | Encode raw YUV to H.265/HEVC |
+| [enc_hevc_pull](enc_hevc_pull/) | Encode raw YUV to H.265 using pull mode |
+| [enc_vp8_file](enc_vp8_file/) | Encode raw YUV to VP8 (IVF) |
+| [enc_vp9_file](enc_vp9_file/) | Encode raw YUV to VP9 (IVF) |
 
 ### Container Operations
 
@@ -66,6 +78,8 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 |--------|-------------|
 | [demux_mp4_file](demux_mp4_file/) | Demux MP4 into separate audio/video streams |
 | [mux_mp4_file](mux_mp4_file/) | Mux audio and video into MP4 container |
+| [demux_webm_file](demux_webm_file/) | Demux WebM into separate audio/video streams |
+| [mux_webm_file](mux_webm_file/) | Mux audio and video into WebM container |
 
 ### Media Information
 
@@ -81,6 +95,8 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 | [enc_preset_file](enc_preset_file/) | Encode using AVBlocks presets |
 | [re_encode](re_encode/) | Remux media with optional forced re-encoding |
 | [slideshow](slideshow/) | Create video slideshow from images |
+| [dump_avc_au](dump_avc_au/) | Dump H.264/AVC stream into access unit files |
+| [dump_hevc_au](dump_hevc_au/) | Dump H.265/HEVC stream into access unit files |
 
 ## Processing Modes
 

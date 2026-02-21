@@ -11,7 +11,7 @@ import click
 
 from avblocks import (
     Library, Transcoder, MediaInfo, MediaSocket,
-    MediaType, ErrorFacility
+    MediaType, ErrorFacility, PinConnection
 )
 
 
@@ -34,12 +34,6 @@ def print_error(action: str, error) -> None:
         return
     
     print(f"{error.message or ''}, facility:{error.facility} code:{error.code} hint:{error.hint or ''}")
-
-
-# Pin connection constants (if not available in the library)
-class PinConnection:
-    Disabled = 0
-    Auto = 1
 
 
 def generate_output_transcoder(input_file: str, output_base: str) -> Transcoder:
@@ -124,9 +118,9 @@ def main(input_file: str, output_base: str):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         
         if not input_file:
-            input_file = os.path.join(script_dir, "../assets/mov/big_buck_bunny_trailer.mp4")
+            input_file = os.path.join(script_dir, "../../assets/mov/big_buck_bunny_trailer.mp4")
         if not output_base:
-            output_base = os.path.join(script_dir, "../output/demux_mp4_file/big_buck_bunny_trailer")
+            output_base = os.path.join(script_dir, "../../output/demux_mp4_file/big_buck_bunny_trailer")
         
         print("Using default options:")
         print(f"  --input {input_file}")

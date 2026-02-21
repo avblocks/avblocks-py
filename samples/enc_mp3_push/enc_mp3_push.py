@@ -190,9 +190,9 @@ def main(input_file: str, output_file: str):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         
         if not input_file:
-            input_file = os.path.join(script_dir, "../assets/aud/Hydrate-Kenny_Beltrey.wav")
+            input_file = os.path.join(script_dir, "../../assets/aud/Hydrate-Kenny_Beltrey.wav")
         if not output_file:
-            output_file = os.path.join(script_dir, "../output/enc_mp3_push/Hydrate-Kenny_Beltrey.mp3")
+            output_file = os.path.join(script_dir, "../../output/enc_mp3_push/Hydrate-Kenny_Beltrey.mp3")
         
         print("Using default options:")
         print(f"  --input {input_file}")

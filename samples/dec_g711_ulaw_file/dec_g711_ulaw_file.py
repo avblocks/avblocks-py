@@ -110,9 +110,9 @@ def main(input_file: str, output_file: str):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         
         if not input_file:
-            input_file = os.path.join(script_dir, "../assets/aud/8k_8bit_1ch_ulaw.wav")
+            input_file = os.path.join(script_dir, "../../assets/aud/8k_8bit_1ch_ulaw.wav")
         if not output_file:
-            output_file = os.path.join(script_dir, "../output/dec_g711_ulaw_file/8k_8bit_1ch.wav")
+            output_file = os.path.join(script_dir, "../../output/dec_g711_ulaw_file/8k_8bit_1ch.wav")
         
         print("Using default options:")
         print(f"  --input {input_file}")

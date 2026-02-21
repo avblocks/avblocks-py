@@ -236,9 +236,13 @@ class StreamType(IntEnum):
     WMA_Lossless = 0x100F
     """Microsoft Windows Media Audio Lossless."""
     
+    Opus = 0x1010
+    """Opus Audio Codec. This is an open, royalty-free audio codec developed by the Xiph.Org Foundation and standardized by IETF."""
+    
     END_AUDIO = 0x1FFF
     """This constant marks the end of audio elementary streams. It is not a valid stream type on its own."""
-    
+
+
     BEGIN_VIDEO = 0x2000
     """This constant marks the start of video elementary streams. It is not a valid stream type on its own."""
     
@@ -292,9 +296,28 @@ class StreamType(IntEnum):
     HEVC = 0x200E
     """Alias. Same as H265."""
     
+    VP9 = 0x200F
+    """VP9 is an open video codec released by Google as a successor to VP8. VP9 is part of the WebM format.
+    
+    Added in version 3.3
+    """
+    
+    AV1 = 0x2010
+    """AV1 is an open, royalty-free video coding format designed for video transmissions over the Internet.
+    
+    Added in version 3.3
+    """
+
+    AV2 = 0x2011
+    """AV2 is the successor to the AV1 video coding format. It is being developed by the Alliance for Open Media (AOMedia).
+    
+    Added in version 3.3
+    """
+
     END_VIDEO = 0x2FFF
     """This constant marks the end of the elementary video streams. It is not a valid stream type on its own."""
-    
+
+
     BEGIN_CONTAINER = 0x3000
     """This constant marks the start of file formats (a.k.a. containers). It is not a valid stream type on its own."""
     
@@ -330,11 +353,16 @@ class StreamType(IntEnum):
     """Open standard container format released by Google and based on a profile of Matroska."""
     
     IVF = 0x300B
-    """IVF (Interactive Video Format) is a simple file format that transports raw VP8, VP9, and AV1 video only."""
+    """Duck Keyframe / Interframe Video Format. 
+    This is a simple (video only) container format that transports raw VP8, VP9, AV1, and AV2 video.
+    
+    Added in version 3.3
+    """
     
     END_CONTAINER = 0x3FFF
     """This constant marks the end of audio/video containers. It is not a valid stream type on its own."""
-    
+
+
     BEGIN_IMAGE = 0x4000
     """This constant marks the start of image types. It is not a valid stream type on its own."""
     
@@ -449,6 +477,23 @@ class StreamSubType(IntEnum):
     
     AAC_RAW = 14
     """Raw AAC data format: AAC data is stored without headers."""
+    
+    HEVC_Annex_B = 15
+    """H.265/HEVC bitstream with start codes.
+    H.265 bitstreams are transmitted in this format over the air, or contained in MPEG-2 program or transport streams.
+    The H.265 bitstream is formatted as described in Annex B of ITU-T Rec. H.265. According to this specification,
+    the bitstream consists of a sequence of NALUs (Network Abstraction Layer Units).
+    Each NALU is prefixed with a start code equal to 0x000001 or 0x00000001."""
+    
+    HVCC = 16
+    """H.265/HEVC bitstream without start codes.
+    This is how the bitstream is stored in a MPEG-4 container (MP4).
+    Instead of start codes, each NALU is prefixed by a length field, which gives the length of the NALU in bytes.
+    The size of the length field can vary, but is typically 1, 2, or 4 bytes.
+    Defined in ISO 14496-15."""
+    
+    HVC1 = 16
+    """Alias. Same as HVCC."""
 
 
 class ScanType(IntEnum):

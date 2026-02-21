@@ -171,9 +171,9 @@ def main(input_dir: str, output_file: str, color_format: str):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         
         if not input_dir:
-            input_dir = os.path.join(script_dir, "../assets/vid/foreman_qcif.h264.au")
+            input_dir = os.path.join(script_dir, "../../assets/vid/foreman_qcif.h264.au")
         if not output_file:
-            output_file = os.path.join(script_dir, "../output/dec_avc_au/foreman_qcif.yuv")
+            output_file = os.path.join(script_dir, "../../output/dec_avc_au/foreman_qcif.yuv")
         
         print("Using default options:")
         print(f"  --input {input_dir}")

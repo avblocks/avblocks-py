@@ -5,19 +5,23 @@ AVBlocks Python wrapper for audio and video processing.
 from .audio_stream_info import AudioStreamInfo
 from .error_info import ErrorInfo
 from .constants import (
+    AVBlocksError,
     BitrateMode,
-    ColorFormat, 
-    ScanType,
-    LicenseStatusFlags, 
-    MediaType, 
-    TranscoderStatus, 
-    StreamType, StreamSubType, 
-    StereoMode, 
-    ErrorFacility, 
-    TranscoderError, CodecError, AVBlocksError,
-    Use,
+    CodecError,
+    ColorFormat,
+    ErrorFacility,
+    LicenseStatusFlags,
+    MediaType,
     Meta,
     MetaPictureType,
+    PinConnection,
+    ScanType,
+    StereoMode,
+    StreamSubType,
+    StreamType,
+    TranscoderError,
+    TranscoderStatus,
+    Use,
 )
 
 from .data_stream_info import DataStreamInfo
@@ -32,10 +36,10 @@ from .presets import Preset
 from .stream_info import StreamInfo
 from .transcoder import (
     Transcoder,
-    TranscoderProgressEventArgs,
-    TranscoderStatusEventArgs,
     TranscoderContinueEventArgs,
     TranscoderInputChangeEventArgs,
+    TranscoderProgressEventArgs,
+    TranscoderStatusEventArgs,
 )
 from .unmanaged_media_buffer import UnmanagedMediaBuffer
 from .video_stream_info import VideoStreamInfo
@@ -60,20 +64,21 @@ __all__ = [
     'Meta',
     'MetaPictureType',
     'Param',
+    'PinConnection',
     'Preset',
     'ScanType',
     'StereoMode',
     'StreamInfo',
-    'StreamType',
     'StreamSubType',
+    'StreamType',
     'Transcoder',
     'TranscoderError',
-    'TranscoderProgressEventArgs',
-    'TranscoderStatusEventArgs',
     'TranscoderContinueEventArgs',
     'TranscoderInputChangeEventArgs',
+    'TranscoderProgressEventArgs',
+    'TranscoderStatusEventArgs',
     'TranscoderStatus',
+    'UnmanagedMediaBuffer',
     'Use',
     'VideoStreamInfo',
-    'UnmanagedMediaBuffer',
 ]

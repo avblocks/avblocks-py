@@ -112,9 +112,9 @@ def main(input_file: str, output_file: str):
         script_dir = os.path.dirname(os.path.abspath(__file__))
         
         if not input_file:
-            input_file = os.path.join(script_dir, "../assets/vid/foreman_qcif.h264")
+            input_file = os.path.join(script_dir, "../../assets/vid/foreman_qcif.h264")
         if not output_file:
-            output_file = os.path.join(script_dir, "../output/dec_avc_file/foreman_qcif.yuv")
+            output_file = os.path.join(script_dir, "../../output/dec_avc_file/foreman_qcif.yuv")
         
         print("Using default options:")
         print(f"  --input {input_file}")
