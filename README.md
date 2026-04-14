@@ -1,4 +1,4 @@
-# avblocks-py (beta)
+# avblocks-py
 
 AVBlocks Python SDK
 
