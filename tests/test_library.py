@@ -82,7 +82,7 @@ def test_library_is_licensed(initialized_library):
     assert isinstance(result, bool)
     
     # Test with product and feature
-    result = Library.is_licensed(product="AVBlocks", feature="Transcode")
+    result = Library.is_licensed(product="avb", feature="pcm")
     assert isinstance(result, bool)
 
 

@@ -1,3 +1,10 @@
+[build-system]
+requires = ["hatchling", "editables"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/avblocks", "samples"]
+
 [project]
 name = "avblocks"
 version = "3.4.0.1"
@@ -64,6 +71,12 @@ enc-preset-file = "samples.enc_preset_file.enc_preset_file:main"
 re-encode = "samples.re_encode.re_encode:main"
 slideshow = "samples.slideshow.slideshow:main"
 
+# Video Processing
+video-crop = "samples.video_crop.video_crop:main"
+
+# Audio Processing
+audio-upsample = "samples.audio_upsample.audio_upsample:main"
+
 [dependency-groups]
 dev = [
     "pylint>=3.3.7",
@@ -74,7 +87,3 @@ dev = [
     "mkdocstrings[python]>=0.29.1",
     "pymdown-extensions>=10.16",
 ]
-
-[tool.setuptools.packages.find]
-where = ["src", "."]
-include = ["avblocks*", "samples*"]

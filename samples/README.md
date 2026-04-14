@@ -88,6 +88,18 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 | [info_stream_file](info_stream_file/) | Display stream information (codecs, resolution, etc.) |
 | [info_metadata_file](info_metadata_file/) | Display metadata and extract embedded pictures |
 
+### Audio Processing
+
+| Sample | Description |
+|--------|-------------|
+| [audio_upsample](audio_upsample/) | Upsample audio from 44.1 KHz to 48 KHz |
+
+### Video Processing
+
+| Sample | Description |
+|--------|-------------|
+| [video_crop](video_crop/) | Crop a video by removing pixels from the edges |
+
 ### Utilities
 
 | Sample | Description |
