@@ -99,6 +99,9 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 | Sample | Description |
 |--------|-------------|
 | [video_crop](video_crop/) | Crop a video by removing pixels from the edges |
+| [video_framerate](video_framerate/) | Change the frame rate of a video |
+| [video_pad](video_pad/) | Add black border padding around a video |
+| [video_upscale](video_upscale/) | Upscale a video to Full HD (1920x1080) using bicubic interpolation |
 
 ### Utilities
 

@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 """
-Crop a video by removing pixels from the edges.
+Add black border padding around a video.
 
-This sample demonstrates how to use AVBlocks to crop a video file by removing
-a specified number of pixels from each edge of the frame.
+This sample demonstrates how to use AVBlocks to add padding around a video
+by specifying the number of pixels to add on each edge of the frame.
 """
 
-import math
 import os
 import sys
 import click
@@ -38,23 +37,29 @@ def print_error(action: str, error) -> None:
     print(f"{error.message or ''}, facility:{error.facility} code:{error.code} hint:{error.hint or ''}")
 
 
-def crop_video(
+def pad_video(
     input_file: str,
     output_file: str,
-    crop_left: int,
-    crop_right: int,
-    crop_top: int,
-    crop_bottom: int
+    width: int,
+    height: int,
+    pad_left: int,
+    pad_right: int,
+    pad_top: int,
+    pad_bottom: int,
+    pad_color: int
 ) -> bool:
-    """Crop a video file by removing pixels from the specified edges.
+    """Add padding around a video file.
 
     Args:
         input_file: Path to the input MP4 file.
         output_file: Path to the output MP4 file.
-        crop_left: Pixels to remove from the left edge.
-        crop_right: Pixels to remove from the right edge.
-        crop_top: Pixels to remove from the top edge.
-        crop_bottom: Pixels to remove from the bottom edge.
+        width: Target output frame width in pixels (0 = auto).
+        height: Target output frame height in pixels (0 = auto).
+        pad_left: Pixels to add on the left edge.
+        pad_right: Pixels to add on the right edge.
+        pad_top: Pixels to add on the top edge.
+        pad_bottom: Pixels to add on the bottom edge.
+        pad_color: Padding color in ARGB32 format.
 
     Returns:
         True on success, False on error.
@@ -84,7 +89,7 @@ def crop_video(
 
     media_info.close()
 
-    # Find the output video pin and update frame size + display ratio
+    # Find the output video pin and update frame size + padding parameters
     for pin in output_socket.pins:
         if pin.stream_info.media_type != MediaType.Video:
             continue
@@ -93,23 +98,19 @@ def crop_video(
         if not isinstance(vsi, VideoStreamInfo):
             continue
 
-        new_width = vsi.frame_width - crop_left - crop_right
-        new_height = vsi.frame_height - crop_top - crop_bottom
+        # Compute output dimensions if not specified
+        out_width = width if width > 0 else vsi.frame_width + pad_left + pad_right
+        out_height = height if height > 0 else vsi.frame_height + pad_top + pad_bottom
 
-        # Update output frame dimensions to reflect the crop
-        vsi.frame_width = new_width
-        vsi.frame_height = new_height
+        vsi.frame_width = out_width
+        vsi.frame_height = out_height
 
-        # Update display ratio to match the new frame dimensions
-        g = math.gcd(new_width, new_height)
-        vsi.display_ratio_width = new_width // g
-        vsi.display_ratio_height = new_height // g
-
-        # Set crop parameters on this pin
-        pin.params[Param.Video.Crop.Left] = crop_left
-        pin.params[Param.Video.Crop.Right] = crop_right
-        pin.params[Param.Video.Crop.Top] = crop_top
-        pin.params[Param.Video.Crop.Bottom] = crop_bottom
+        # Set padding parameters
+        pin.params[Param.Video.Pad.Left] = pad_left
+        pin.params[Param.Video.Pad.Right] = pad_right
+        pin.params[Param.Video.Pad.Top] = pad_top
+        pin.params[Param.Video.Pad.Bottom] = pad_bottom
+        pin.params[Param.Video.Pad.Color] = pad_color
 
         break
 
@@ -143,38 +144,51 @@ def crop_video(
 @click.option('-o', '--output', 'output_file',
               help='MP4 output file.',
               type=click.Path())
-@click.option('--crop-left', default=60,
-              help='Pixels to crop from left. (default: 60)',
+@click.option('-w', '--width', default=0,
+              help='Target width (pixels). 0 = input width + left + right. (default: 0)',
               type=int)
-@click.option('--crop-right', default=60,
-              help='Pixels to crop from right. (default: 60)',
+@click.option('-h', '--height', default=0,
+              help='Target height (pixels). 0 = input height + top + bottom. (default: 0)',
               type=int)
-@click.option('--crop-top', default=0,
-              help='Pixels to crop from top. (default: 0)',
+@click.option('-l', '--left', 'pad_left', default=100,
+              help='Left padding (pixels). (default: 100)',
               type=int)
-@click.option('--crop-bottom', default=0,
-              help='Pixels to crop from bottom. (default: 0)',
+@click.option('-r', '--right', 'pad_right', default=100,
+              help='Right padding (pixels). (default: 100)',
+              type=int)
+@click.option('-t', '--top', 'pad_top', default=100,
+              help='Top padding (pixels). (default: 100)',
+              type=int)
+@click.option('-b', '--bottom', 'pad_bottom', default=100,
+              help='Bottom padding (pixels). (default: 100)',
+              type=int)
+@click.option('-c', '--color', 'pad_color', default=0xFF000000,
+              help='Padding color (ARGB32). (default: 0xFF000000)',
               type=int)
 def main(
     input_file: str,
     output_file: str,
-    crop_left: int,
-    crop_right: int,
-    crop_top: int,
-    crop_bottom: int
+    width: int,
+    height: int,
+    pad_left: int,
+    pad_right: int,
+    pad_top: int,
+    pad_bottom: int,
+    pad_color: int
 ):
-    """Crop a video by removing pixels from the edges."""
+    """Add black border padding around a video."""
     # Set default options if not provided
     if not input_file:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         input_file = os.path.join(script_dir, '../../assets/vid/big_buck_bunny_trailer.vid.mp4')
-        output_file = os.path.join(script_dir, '../../output/video_crop/cropped.mp4')
+        output_file = os.path.join(script_dir, '../../output/video_pad/big_buck_bunny_padded.mp4')
 
         print('Using defaults:')
         print(
-            f'video-crop --input {input_file} --output {output_file}'
-            f' --crop-left {crop_left} --crop-right {crop_right}'
-            f' --crop-top {crop_top} --crop-bottom {crop_bottom}'
+            f'video-pad --input {input_file} --output {output_file}'
+            f' --left {pad_left} --right {pad_right}'
+            f' --top {pad_top} --bottom {pad_bottom}'
+            f' --color {pad_color}'
         )
 
     error = False
@@ -187,10 +201,13 @@ def main(
     if not output_file:
         error = True
 
-    print(f'Crop left:    {crop_left}')
-    print(f'Crop right:   {crop_right}')
-    print(f'Crop top:     {crop_top}')
-    print(f'Crop bottom:  {crop_bottom}')
+    print(f'Width:        {width} (0 = auto)')
+    print(f'Height:       {height} (0 = auto)')
+    print(f'Pad left:     {pad_left}')
+    print(f'Pad right:    {pad_right}')
+    print(f'Pad top:      {pad_top}')
+    print(f'Pad bottom:   {pad_bottom}')
+    print(f'Pad color:    0x{pad_color:08X}')
 
     if error:
         click.echo('\nUse --help for usage information.')
@@ -201,7 +218,12 @@ def main(
     # Set license information. To run AVBlocks in demo mode, comment the next line out.
     # Library.set_license("<license-string>")
 
-    result = crop_video(input_file, output_file, crop_left, crop_right, crop_top, crop_bottom)
+    result = pad_video(
+        input_file, output_file,
+        width, height,
+        pad_left, pad_right, pad_top, pad_bottom,
+        pad_color
+    )
 
     Library.shutdown()
 

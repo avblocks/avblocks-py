@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 """
-Crop a video by removing pixels from the edges.
+Change the frame rate of a video.
 
-This sample demonstrates how to use AVBlocks to crop a video file by removing
-a specified number of pixels from each edge of the frame.
+This sample demonstrates how to use AVBlocks to change the frame rate
+of a video file.
 """
 
-import math
 import os
 import sys
 import click
 
 from avblocks import (
     Library, Transcoder, MediaInfo, MediaSocket,
-    VideoStreamInfo, MediaType, Param, ErrorFacility
+    VideoStreamInfo, MediaType, ErrorFacility
 )
 
 
@@ -38,23 +37,17 @@ def print_error(action: str, error) -> None:
     print(f"{error.message or ''}, facility:{error.facility} code:{error.code} hint:{error.hint or ''}")
 
 
-def crop_video(
+def change_video_framerate(
     input_file: str,
     output_file: str,
-    crop_left: int,
-    crop_right: int,
-    crop_top: int,
-    crop_bottom: int
+    frame_rate: float
 ) -> bool:
-    """Crop a video file by removing pixels from the specified edges.
+    """Change the frame rate of a video file.
 
     Args:
         input_file: Path to the input MP4 file.
         output_file: Path to the output MP4 file.
-        crop_left: Pixels to remove from the left edge.
-        crop_right: Pixels to remove from the right edge.
-        crop_top: Pixels to remove from the top edge.
-        crop_bottom: Pixels to remove from the bottom edge.
+        frame_rate: Target frame rate in frames per second.
 
     Returns:
         True on success, False on error.
@@ -84,7 +77,7 @@ def crop_video(
 
     media_info.close()
 
-    # Find the output video pin and update frame size + display ratio
+    # Find the output video pin and update the frame rate
     for pin in output_socket.pins:
         if pin.stream_info.media_type != MediaType.Video:
             continue
@@ -93,24 +86,7 @@ def crop_video(
         if not isinstance(vsi, VideoStreamInfo):
             continue
 
-        new_width = vsi.frame_width - crop_left - crop_right
-        new_height = vsi.frame_height - crop_top - crop_bottom
-
-        # Update output frame dimensions to reflect the crop
-        vsi.frame_width = new_width
-        vsi.frame_height = new_height
-
-        # Update display ratio to match the new frame dimensions
-        g = math.gcd(new_width, new_height)
-        vsi.display_ratio_width = new_width // g
-        vsi.display_ratio_height = new_height // g
-
-        # Set crop parameters on this pin
-        pin.params[Param.Video.Crop.Left] = crop_left
-        pin.params[Param.Video.Crop.Right] = crop_right
-        pin.params[Param.Video.Crop.Top] = crop_top
-        pin.params[Param.Video.Crop.Bottom] = crop_bottom
-
+        vsi.frame_rate = frame_rate
         break
 
     # Create and run the transcoder
@@ -143,38 +119,25 @@ def crop_video(
 @click.option('-o', '--output', 'output_file',
               help='MP4 output file.',
               type=click.Path())
-@click.option('--crop-left', default=60,
-              help='Pixels to crop from left. (default: 60)',
-              type=int)
-@click.option('--crop-right', default=60,
-              help='Pixels to crop from right. (default: 60)',
-              type=int)
-@click.option('--crop-top', default=0,
-              help='Pixels to crop from top. (default: 0)',
-              type=int)
-@click.option('--crop-bottom', default=0,
-              help='Pixels to crop from bottom. (default: 0)',
-              type=int)
+@click.option('-f', '--frame-rate', default=30.0,
+              help='Target frame rate (fps). (default: 30.0)',
+              type=float)
 def main(
     input_file: str,
     output_file: str,
-    crop_left: int,
-    crop_right: int,
-    crop_top: int,
-    crop_bottom: int
+    frame_rate: float
 ):
-    """Crop a video by removing pixels from the edges."""
+    """Change the frame rate of a video."""
     # Set default options if not provided
     if not input_file:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         input_file = os.path.join(script_dir, '../../assets/vid/big_buck_bunny_trailer.vid.mp4')
-        output_file = os.path.join(script_dir, '../../output/video_crop/cropped.mp4')
+        output_file = os.path.join(script_dir, '../../output/video_framerate/big_buck_bunny_30fps.mp4')
 
         print('Using defaults:')
         print(
-            f'video-crop --input {input_file} --output {output_file}'
-            f' --crop-left {crop_left} --crop-right {crop_right}'
-            f' --crop-top {crop_top} --crop-bottom {crop_bottom}'
+            f'video-framerate --input {input_file} --output {output_file}'
+            f' --frame-rate {frame_rate}'
         )
 
     error = False
@@ -187,10 +150,11 @@ def main(
     if not output_file:
         error = True
 
-    print(f'Crop left:    {crop_left}')
-    print(f'Crop right:   {crop_right}')
-    print(f'Crop top:     {crop_top}')
-    print(f'Crop bottom:  {crop_bottom}')
+    print(f'Frame rate:   {frame_rate}')
+
+    if frame_rate <= 0.0:
+        print('Error: Frame rate must be positive.')
+        error = True
 
     if error:
         click.echo('\nUse --help for usage information.')
@@ -201,7 +165,7 @@ def main(
     # Set license information. To run AVBlocks in demo mode, comment the next line out.
     # Library.set_license("<license-string>")
 
-    result = crop_video(input_file, output_file, crop_left, crop_right, crop_top, crop_bottom)
+    result = change_video_framerate(input_file, output_file, frame_rate)
 
     Library.shutdown()
 
