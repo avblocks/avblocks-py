@@ -54,19 +54,20 @@ class MediaPin(IImmutable):
     @property
     def connection(self) -> int:
         """
-        Connection ID. This should not be confused with the stream ID that is 
+        Connection ID. This should not be confused with the stream ID that is
         defined for certain stream types.
-        
-        A Transcoder object matches and connects input and output pins by their 
-        connection ID. The Transcoder processes the connected pins and ignores 
+
+        A Transcoder object matches and connects input and output pins by their
+        connection ID. The Transcoder processes the connected pins and ignores
         the unconnected pins.
-        
+
         Pins are connected to one another according to the following rules:
-        - Input pins with connection ID greater than PinConnection.Auto are connected 
+
+        - Input pins with connection ID greater than PinConnection.Auto are connected
           to output pins with the same connection ID.
-        - Input and output pins with connection ID equal to PinConnection.Auto are 
+        - Input and output pins with connection ID equal to PinConnection.Auto are
           connected automatically based on their media type (audio or video).
-        - Input and output pins with connection ID equal to PinConnection.Disabled 
+        - Input and output pins with connection ID equal to PinConnection.Disabled
           are ignored.
         """
         return self._connection

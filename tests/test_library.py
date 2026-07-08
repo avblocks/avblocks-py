@@ -11,7 +11,7 @@ def initialized_library():
         yield
         Library.shutdown()
     else:
-        pytest.skip("Failed to initialize AVBlocks library. Make sure the library is available in the system path or set AVBLOCKS_LIBRARY_PATH environment variable.")
+        pytest.skip("Failed to initialize AVBlocks library. Make sure the library is available in the system path or set AVBLOCKS_CORE_PATH environment variable.")
 
 
 def test_library_initialize():

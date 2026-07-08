@@ -1515,19 +1515,23 @@ class StereoMode(IntEnum):
     
     MidSide = 3
     """If AAC encoder is used with mode MidSide the encoding will be done using Mid/Side coding technique.
+
     If MPEG Audio encoder is used with this mode:
-      - Layers 1 and 2: the encoding will be done using normal independent coding of left and right channels (same as LR mode)
-      - Layer 3: the encoding will use Intensity coding technique when the bit rate is lower than 96Kb/s for 2 channel setup
-        in combination with normal independent coding of left and right channels, otherwise will use only left and right coding.
-      - Layer 3: the encoding of every frame will be done with Mid/Side or Left-Right Stereo coding technique
-        depending on the data present in the frame"""
+
+    - Layers 1 and 2: the encoding will be done using normal independent coding of left and right channels (same as LR mode)
+    - Layer 3: the encoding will use Intensity coding technique when the bit rate is lower than 96Kb/s for 2 channel setup
+      in combination with normal independent coding of left and right channels, otherwise will use only left and right coding.
+    - Layer 3: the encoding of every frame will be done with Mid/Side or Left-Right Stereo coding technique
+      depending on the data present in the frame"""
     
     Joint = 4
     """If AAC encoder is used with mode Joint the encoding of every frame will be done with Mid/Side or Left-Right Stereo coding technique
     depending on the data present in the frame.
+
     If MPEG Audio encoder is used with this mode:
-      - Layer 1: the encoding will be done using normal independent coding of left and right channels (same as LR mode).
-      - Layer 2: the encoding will use Intensity coding technique when the bit rate is lower than 96Kb/s for 2 channel setup
-        in combination with normal independent coding of left and right channels, otherwise will use only left and right coding.
-      - Layer 3: the encoding of every frame will be done with Mid/Side or Left-Right Stereo coding technique
-        depending on the data present in the frame"""
+
+    - Layer 1: the encoding will be done using normal independent coding of left and right channels (same as LR mode).
+    - Layer 2: the encoding will use Intensity coding technique when the bit rate is lower than 96Kb/s for 2 channel setup
+      in combination with normal independent coding of left and right channels, otherwise will use only left and right coding.
+    - Layer 3: the encoding of every frame will be done with Mid/Side or Left-Right Stereo coding technique
+      depending on the data present in the frame"""

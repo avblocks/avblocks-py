@@ -97,17 +97,18 @@ class AudioStreamInfo(StreamInfo):
         """
         The number of bytes occupied by an audio frame (smallest discrete unit).
         
-        A frame is the smallest discrete unit in an audio stream. It may contain 
-        one or more samples. Depending on the audio stream type the frame may 
+        A frame is the smallest discrete unit in an audio stream. It may contain
+        one or more samples. Depending on the audio stream type the frame may
         contain fixed or variable number of samples.
         
-        For compressed streams the frame size is variable even if there are fixed 
+        For compressed streams the frame size is variable even if there are fixed
         number of samples in each frame. In this case BytesPerFrame is 0.
         
-        For an LPCM stream the frame size is constant. In this case BytesPerFrame 
+        For an LPCM stream the frame size is constant. In this case BytesPerFrame
         is greater than 0. Normally for interleaved LPCM streams the following is true:
+
         - BytesPerFrame / ChannelCount == SampleSize
-        - The valid bits in a sample are given by BitsPerSample and they are 
+        - The valid bits in a sample are given by BitsPerSample and they are
           aligned towards the hi-order byte.
         """
         return self._bytes_per_frame

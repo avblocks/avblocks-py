@@ -26,8 +26,8 @@ class NativeLibrary:
             self._setup_functions()
     
     def _load_library(self):
-        """Load the native library from the path specified in environment variable."""
-        lib_path = os.environ.get('AVBLOCKS_LIBRARY_PATH')
+        """Load the native library from the directory specified in environment variable."""
+        lib_path = os.environ.get('AVBLOCKS_CORE_PATH')
         
         if not lib_path:
             # Try default locations based on platform
@@ -50,19 +50,36 @@ class NativeLibrary:
             for path in search_paths:
                 candidate = path / lib_name
                 if candidate.exists():
-                    lib_path = str(candidate)
+                    lib_path = str(path)
                     break
         
-        if not lib_path or not Path(lib_path).exists():
+        if not lib_path:
             raise RuntimeError(
-                "AVBlocks library not found. Please set AVBLOCKS_LIBRARY_PATH "
-                "environment variable to point to the library file."
+                "AVBlocks library not found. Please set AVBLOCKS_CORE_PATH "
+                "environment variable to point to the library directory."
+            )
+        
+        # Determine library name based on platform
+        if sys.platform == 'darwin':
+            lib_name = 'libAVBlocks.dylib'
+        elif sys.platform == 'linux':
+            lib_name = 'libAVBlocks64.so'
+        elif sys.platform == 'win32':
+            lib_name = 'AVBlocks64.dll'
+        else:
+            raise RuntimeError(f"Unsupported platform: {sys.platform}")
+        
+        lib_file = Path(lib_path) / lib_name
+        if not lib_file.exists():
+            raise RuntimeError(
+                f"AVBlocks library not found at {lib_file}. "
+                "Please set AVBLOCKS_CORE_PATH to the correct library directory."
             )
         
         try:
-            self._lib = ctypes.CDLL(lib_path)
+            self._lib = ctypes.CDLL(str(lib_file))
         except OSError as e:
-            raise RuntimeError(f"Failed to load AVBlocks library from {lib_path}: {e}") from e
+            raise RuntimeError(f"Failed to load AVBlocks library from {lib_file}: {e}") from e
     
     def _setup_functions(self):
         """Set up function signatures for the native library."""

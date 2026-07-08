@@ -65,7 +65,7 @@ class Param:
             
             Use = "VIDEO_FRAME_RATE_FILTER"
             """
-            Video: Specifies whether a video frame rate filter is inserted in the processing chain.
+            Video - Specifies whether a video frame rate filter is inserted in the processing chain.
             The filter converts the input frame rate to the output frame rate.
             
             This parameter is an integer.
@@ -78,7 +78,7 @@ class Param:
             
             RealTime = "VIDEO_FRAME_RATE_FILTER_REAL_TIME"
             """
-            Video: Specifies whether a video frame rate filter is allowed to drop frames 
+            Video - Specifies whether a video frame rate filter is allowed to drop frames 
             when a video encoder cannot keep up with the input in realtime.
             
             This parameter is a boolean value stored as one of the following:
@@ -94,7 +94,7 @@ class Param:
             
             Method = "DEINTERLACING_METHOD"
             """
-            Video: Specifies the deinterlacing method used by the deinterlacing filter.
+            Video - Specifies the deinterlacing method used by the deinterlacing filter.
             
             This parameter is an integer.
             The supported values are defined in the DeinterlacingMethod enum.
@@ -103,7 +103,7 @@ class Param:
             
             Threshold = "DEINTERLACING_THRESHOLD"
             """
-            Video: Specifies the deinterlacing threshold that is used by some deinterlacing methods.
+            Video - Specifies the deinterlacing threshold that is used by some deinterlacing methods.
             
             The threshold is used by the DeinterlacingMethod.MedianThreshold and 
             DeinterlacingMethod.CAVT.
@@ -118,7 +118,7 @@ class Param:
             
             InterpolationMethod = "RESIZE_INTERPOLATION_METHOD"
             """
-            Video: Specifies the interpolation method that is used for resizing video frames.
+            Video - Specifies the interpolation method that is used for resizing video frames.
             
             This parameter is an integer.
             The supported values are defined in the InterpolationMethod enum.
@@ -188,35 +188,35 @@ class Param:
             """Parameters specific to video cropping"""
             
             Left = "CROP_LEFT"
-            """Video: Specifies the area to be cropped inside the left edge of the input frame. (integer)"""
+            """Video - Specifies the area to be cropped inside the left edge of the input frame. (integer)"""
             
             Right = "CROP_RIGHT"
-            """Video: Specifies the area to be cropped inside the right edge of the input frame. (integer)"""
+            """Video - Specifies the area to be cropped inside the right edge of the input frame. (integer)"""
             
             Top = "CROP_TOP"
-            """Video: Specifies the area to be cropped inside the top edge of the input frame. (integer)"""
+            """Video - Specifies the area to be cropped inside the top edge of the input frame. (integer)"""
             
             Bottom = "CROP_BOTTOM"
-            """Video: Specifies the area to be cropped inside the bottom edge of the input frame. (integer)"""
+            """Video - Specifies the area to be cropped inside the bottom edge of the input frame. (integer)"""
         
         class Pad:
             """Parameters specific to video padding"""
             
             Left = "PAD_LEFT"
-            """Video: Specifies the area to be padded inside the left edge of the output frame. (integer)"""
+            """Video - Specifies the area to be padded inside the left edge of the output frame. (integer)"""
             
             Right = "PAD_RIGHT"
-            """Video: Specifies the area to be padded inside the right edge of the output frame. (integer)"""
+            """Video - Specifies the area to be padded inside the right edge of the output frame. (integer)"""
             
             Top = "PAD_TOP"
-            """Video: Specifies the area to be padded inside the top edge of the output frame. (integer)"""
+            """Video - Specifies the area to be padded inside the top edge of the output frame. (integer)"""
             
             Bottom = "PAD_BOTTOM"
-            """Video: Specifies the area to be padded inside the bottom edge of the output frame. (integer)"""
+            """Video - Specifies the area to be padded inside the bottom edge of the output frame. (integer)"""
             
             Color = "PAD_COLOR"
             """
-            Video: Specifies the padding color if any padding is set.
+            Video - Specifies the padding color if any padding is set.
             
             This parameter is an integer.
             The color format is ARGB32: bits 0-7 is blue, bits 8-15 is green, bits 16-23 is red and bits 24-31 is the alpha channel.
@@ -301,7 +301,7 @@ class Param:
             
             ConcealDefects = "DECODER_VIDEO_CONCEAL_DEFECTS"
             """
-            Video: Specifies whether to conceal bitstream defects and errors.
+            Video - Specifies whether to conceal bitstream defects and errors.
             
             This parameter is a boolean value stored as one of the following:
             bool (True/False) or integral value (1/0).
