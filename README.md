@@ -2,16 +2,15 @@
 
 AVBlocks Python SDK
 
-Docs: [https://doc.avblocks.com/python/latest](https://doc.avblocks.com/python/latest)
-
 # Prerequisites
 
 - Python 3.9 or higher
 - pip or uv package manager
 
-AVBlocks Python SDK is not distributed via PyPI. Install it directly from the GitHub repository.
 
 # Installation
+
+AVBlocks Python SDK is not distributed via PyPI. Install it directly from the GitHub repository.
 
 ## Install with pip
 
@@ -28,6 +27,10 @@ uv add git+https://github.com/avblocks/avblocks-py.git --tag 3.4.0.2
 ```
 
 This adds `avblocks` as a dependency in your `pyproject.toml`.
+
+# Docs
+
+[https://doc.avblocks.com/python/latest](https://doc.avblocks.com/python/latest)
 
 # Usage
 
