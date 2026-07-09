@@ -325,7 +325,7 @@ class StreamType(IntEnum):
     """Audio Video Interleave (AVI) multimedia container format."""
     
     MP4 = 0x3002
-    """MPEG-4 multimedia container format specified in Part 14 of the MPEG-4 standard (formally ISO/IEC 14496-14:2003)."""
+    """MPEG-4 multimedia container format specified in Part 14 of the MPEG-4 standard (formally ISO/IEC 14496-14``:``2003)."""
     
     ASF = 0x3003
     """Advanced Systems Format (formerly Advanced Streaming Format, Active Streaming Format) (ASF)."""
@@ -654,35 +654,34 @@ class ColorFormat(IntEnum):
     """The color format is not specified or unknown."""
     
     YV12 = 1
-    """Planar Y, V, U (4:2:0) (note V,U order!)"""
+    """Planar Y, V, U (``4:2:0``, note V,U order!)."""
     
     NV12 = 2
-    """Planar Y, merged U->V (4:2:0)"""
+    """Planar Y, merged U->V (``4:2:0``)."""
     
     YUY2 = 3
-    """Composite Y->U->Y->V (4:2:2)"""
+    """Composite Y->U->Y->V (``4:2:2``)."""
     
     UYVY = 4
-    """Composite U->Y->V->Y (4:2:2)"""
+    """Composite U->Y->V->Y (``4:2:2``)."""
     
     YUV411 = 5
-    """Planar Y, U, V (4:1:1)"""
+    """Planar Y, U, V (``4:1:1``)."""
     
     YUV420 = 6
-    """Planar Y, U, V (4:2:0)"""
+    """Planar Y, U, V (``4:2:0``)."""
     
     YUV422 = 7
-    """Planar Y, U, V (4:2:2)"""
+    """Planar Y, U, V (``4:2:2``)."""
     
     YUV444 = 8
-    """Planar Y, U, V (4:4:4)"""
+    """Planar Y, U, V (``4:4:4``)."""
     
     Y411 = 9
-    """Composite Y, U, V (4:1:1)"""
+    """Composite Y, U, V (``4:1:1``)."""
     
     Y41P = 10
-    """Composite Y, U, V (4:1:1)"""
-    
+    """Composite Y, U, V (``4:1:1``)."""
     BGR32 = 11
     """Composite B->G->R"""
     

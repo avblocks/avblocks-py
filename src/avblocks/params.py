@@ -21,12 +21,12 @@ class Param:
     Specifies whether a stream will be reencoded.
     
     This parameter is an integer.
-    The supported values are defined in Use enum.
-    The default value is Use.Auto.
+    The supported values are defined in the :class:`Use` enum.
+    The default value is :attr:`Use.Auto`.
     
-    If this parameter is Use.Auto the reencoding is done only when the input and the output formats are not equivalent.
-    If this parameter is Use.On the reencoding is done always even if the input and the output formats are equivalent.
-    The case when this parameter is Use.Off is not implemented.
+    If this parameter is :attr:`Use.Auto` the reencoding is done only when the input and the output formats are not equivalent.
+    If this parameter is :attr:`Use.On` the reencoding is done always even if the input and the output formats are equivalent.
+    The case when this parameter is :attr:`Use.Off` is not implemented.
     """
     
     HardwareEncoder = "HARDWARE_ENCODER"
@@ -34,8 +34,8 @@ class Param:
     Specifies which hardware encoder shall be used.
     
     This parameter is an integer.
-    The supported values are defined in HardwareEncoder enum.
-    The default value is HardwareEncoder.Off.
+    The supported values are defined in the :class:`HardwareEncoder` enum.
+    The default value is :attr:`HardwareEncoder.Off`.
     """
     
     HardwareEncoderDevice = "HARDWARE_ENCODER_DEVICE"
@@ -53,8 +53,8 @@ class Param:
     Specifies which hardware API shall be used.
     
     This parameter is an integer.
-    The supported values are defined in HwApi enum.
-    The default value is HwApi.None which lets AVBlocks select the hardware API.
+    The supported values are defined in the :class:`HwApi` enum.
+    The default value is :attr:`HwApi.None` which lets AVBlocks select the hardware API.
     """
     
     class Video:
@@ -65,20 +65,20 @@ class Param:
             
             Use = "VIDEO_FRAME_RATE_FILTER"
             """
-            Video - Specifies whether a video frame rate filter is inserted in the processing chain.
+            Video: Specifies whether a video frame rate filter is inserted in the processing chain.
             The filter converts the input frame rate to the output frame rate.
             
             This parameter is an integer.
-            The supported values are defined in Use enum.
-            The default value is Use.Auto.
+            The supported values are defined in the :class:`Use` enum.
+            The default value is :attr:`Use.Auto`.
             
-            If this parameter is Use.Auto the frame rate conversion is done only when the
+            If this parameter is :attr:`Use.Auto` the frame rate conversion is done only when the
             input frame rate differs from the output frame rate.
             """
             
             RealTime = "VIDEO_FRAME_RATE_FILTER_REAL_TIME"
             """
-            Video - Specifies whether a video frame rate filter is allowed to drop frames 
+            Video: Specifies whether a video frame rate filter is allowed to drop frames 
             when a video encoder cannot keep up with the input in realtime.
             
             This parameter is a boolean value stored as one of the following:
@@ -94,16 +94,16 @@ class Param:
             
             Method = "DEINTERLACING_METHOD"
             """
-            Video - Specifies the deinterlacing method used by the deinterlacing filter.
+            Video: Specifies the deinterlacing method used by the deinterlacing filter.
             
             This parameter is an integer.
-            The supported values are defined in the DeinterlacingMethod enum.
-            The default value is DeinterlacingMethod.Blend
+            The supported values are defined in the :class:`DeinterlacingMethod` enum.
+            The default value is :attr:`DeinterlacingMethod.Blend`
             """
             
             Threshold = "DEINTERLACING_THRESHOLD"
             """
-            Video - Specifies the deinterlacing threshold that is used by some deinterlacing methods.
+            Video: Specifies the deinterlacing threshold that is used by some deinterlacing methods.
             
             The threshold is used by the DeinterlacingMethod.MedianThreshold and 
             DeinterlacingMethod.CAVT.
@@ -118,11 +118,11 @@ class Param:
             
             InterpolationMethod = "RESIZE_INTERPOLATION_METHOD"
             """
-            Video - Specifies the interpolation method that is used for resizing video frames.
+            Video: Specifies the interpolation method that is used for resizing video frames.
             
             This parameter is an integer.
-            The supported values are defined in the InterpolationMethod enum.
-            The default value is InterpolationMethod.Cubic.
+            The supported values are defined in the :class:`InterpolationMethod` enum.
+            The default value is :attr:`InterpolationMethod.Cubic`.
             """
         
         class Overlay:
@@ -132,8 +132,8 @@ class Param:
             """
             Specifies an alpha compositing mode - the way a foreground overlay image is combined with the background video.
             
-            This is an integer parameter. The acceptable values are defined in the AlphaCompositingMode enum.
-            The default value is AlphaCompositingMode.Over (Foreground over Background), in effect, a normal painting operation.
+            This is an integer parameter. The acceptable values are defined in the :class:`AlphaCompositingMode` enum.
+            The default value is :attr:`AlphaCompositingMode.Over` (Foreground over Background), in effect, a normal painting operation.
             """
             
             LocationX = "OVERLAY_LOCATION_X"
@@ -165,14 +165,14 @@ class Param:
             """
             Specifies the foreground that should be overlaid with the background.
             
-            This is a MediaBuffer parameter.
+            This is a :class:`MediaBuffer` parameter.
             """
             
             ForegroundBufferFormat = "OVERLAY_FOREGROUND_BUFFER_FORMAT"
             """
             Specifies the format of the foreground buffer.
             
-            This is a VideoStreamInfo parameter.
+            This is a :class:`VideoStreamInfo` parameter.
             """
             
             ForegroundAlpha = "OVERLAY_FOREGROUND_ALPHA"
@@ -188,35 +188,35 @@ class Param:
             """Parameters specific to video cropping"""
             
             Left = "CROP_LEFT"
-            """Video - Specifies the area to be cropped inside the left edge of the input frame. (integer)"""
+            """Video: Specifies the area to be cropped inside the left edge of the input frame. (integer)"""
             
             Right = "CROP_RIGHT"
-            """Video - Specifies the area to be cropped inside the right edge of the input frame. (integer)"""
+            """Video: Specifies the area to be cropped inside the right edge of the input frame. (integer)"""
             
             Top = "CROP_TOP"
-            """Video - Specifies the area to be cropped inside the top edge of the input frame. (integer)"""
+            """Video: Specifies the area to be cropped inside the top edge of the input frame. (integer)"""
             
             Bottom = "CROP_BOTTOM"
-            """Video - Specifies the area to be cropped inside the bottom edge of the input frame. (integer)"""
+            """Video: Specifies the area to be cropped inside the bottom edge of the input frame. (integer)"""
         
         class Pad:
             """Parameters specific to video padding"""
             
             Left = "PAD_LEFT"
-            """Video - Specifies the area to be padded inside the left edge of the output frame. (integer)"""
+            """Video: Specifies the area to be padded inside the left edge of the output frame. (integer)"""
             
             Right = "PAD_RIGHT"
-            """Video - Specifies the area to be padded inside the right edge of the output frame. (integer)"""
+            """Video: Specifies the area to be padded inside the right edge of the output frame. (integer)"""
             
             Top = "PAD_TOP"
-            """Video - Specifies the area to be padded inside the top edge of the output frame. (integer)"""
+            """Video: Specifies the area to be padded inside the top edge of the output frame. (integer)"""
             
             Bottom = "PAD_BOTTOM"
-            """Video - Specifies the area to be padded inside the bottom edge of the output frame. (integer)"""
+            """Video: Specifies the area to be padded inside the bottom edge of the output frame. (integer)"""
             
             Color = "PAD_COLOR"
             """
-            Video - Specifies the padding color if any padding is set.
+            Video: Specifies the padding color if any padding is set.
             
             This parameter is an integer.
             The color format is ARGB32: bits 0-7 is blue, bits 8-15 is green, bits 16-23 is red and bits 24-31 is the alpha channel.
@@ -293,7 +293,7 @@ class Param:
         """
         Decoder configuration data.
         
-        This parameter is a MediaBuffer object.
+        This parameter is a :class:`MediaBuffer` object.
         """
         
         class Video:
@@ -301,7 +301,7 @@ class Param:
             
             ConcealDefects = "DECODER_VIDEO_CONCEAL_DEFECTS"
             """
-            Video - Specifies whether to conceal bitstream defects and errors.
+            Video: Specifies whether to conceal bitstream defects and errors.
             
             This parameter is a boolean value stored as one of the following:
             bool (True/False) or integral value (1/0).
@@ -358,8 +358,8 @@ class Param:
                 MPEG Audio: Specifies the stereo mode.
                 
                 This parameter is an integer.
-                The supported values are defined in StereoMode enum.
-                The default value is StereoMode.LR.
+                The supported values are defined in the :class:`StereoMode` enum.
+                The default value is :attr:`StereoMode.LR`.
                 """
             
             class AAC:
@@ -370,8 +370,8 @@ class Param:
                 AAC Audio: Specifies the stereo mode.
                 
                 This parameter is an integer.
-                The supported values are defined in StereoMode enum.
-                The default value is StereoMode.LR.
+                The supported values are defined in the :class:`StereoMode` enum.
+                The default value is :attr:`StereoMode.LR`.
                 """
             
             class Vorbis:
@@ -467,8 +467,8 @@ class Param:
                 H.264 Video: Encoding profile.
                 
                 This parameter is an integer.
-                The supported values are defined in H264Profile enum.
-                The default value is H264Profile.High.
+                The supported values are defined in the :class:`H264Profile` enum.
+                The default value is :attr:`H264Profile.High`.
                 
                 Sets the value of the profile_idc syntax element.
                 Note: Hardware encoders support: Intel QuickSync, AMD VCE, NVIDIA NVENC.
@@ -479,8 +479,8 @@ class Param:
                 H.264 Video: Entropy coding mode.
                 
                 This parameter is an integer.
-                The supported values are defined in H264EntropyCodingMode enum.
-                The default value is H264EntropyCodingMode.CABAC.
+                The supported values are defined in the :class:`H264EntropyCodingMode` enum.
+                The default value is :attr:`H264EntropyCodingMode.CABAC`.
                 
                 CABAC compresses data more efficiently (10-20% typically) than CAVLC but requires considerably more processing to decode.
                 CABAC is supported at Main, High, High10, High422 and High444. CABAC is not supported at Baseline profile.
@@ -570,8 +570,8 @@ class Param:
                 """
                 H.264 Video: De-blocking filter mode.
                 
-                The supported values are defined in H264DeblockingFilter enum.
-                The default value is H264DeblockingFilter.All.
+                The supported values are defined in the :class:`H264DeblockingFilter` enum.
+                The default value is :attr:`H264DeblockingFilter.All`.
                 
                 The in-loop deblocking filter helps prevent the blocking artifacts common to other DCT-based image compression techniques, 
                 resulting in better visual appearance and compression efficiency
@@ -628,8 +628,8 @@ class Param:
                 Sets the value of the syntax element direct_spatial_mv_pred_flag.
                 
                 This parameter is an integer.
-                The supported values are defined in H264DirectPredMode enum.
-                The default value is H264DirectPredMode.Temporal.
+                The supported values are defined in the :class:`H264DirectPredMode` enum.
+                The default value is :attr:`H264DirectPredMode.Temporal`.
                 Note: Hardware encoders support: None.
                 """
                 
@@ -666,8 +666,8 @@ class Param:
                 H.264 Video: Specifies the block size for which motion estimation should be done.
                 
                 This parameter is an integer.
-                The supported values are defined in MESplitMode enum.
-                The default value is MESplitMode.Only16x16.
+                The supported values are defined in the :class:`H264MeSplitMode` enum.
+                The default value is :attr:`H264MeSplitMode.Only16x16`.
                 Note: Hardware encoders support: None.
                 """
                 
@@ -676,8 +676,8 @@ class Param:
                 H.264 Video: Motion estimation method.
                 
                 This parameter is an integer.
-                The supported values are defined in MEMethod enum.
-                The default value is MEMethod.Log.
+                The supported values are defined in the :class:`H264MeMethod` enum.
+                The default value is :attr:`H264MeMethod.Log`.
                 Note: Hardware encoders support: None.
                 """
                 
@@ -686,8 +686,8 @@ class Param:
                 H.264 Video: Picture coding type.
                 
                 This parameter is an integer.
-                The supported values are defined in PictureCodingType enum.
-                The default value is PictureCodingType.Frames.
+                The supported values are defined in the :class:`H264PicCodingType` enum.
+                The default value is :attr:`H264PicCodingType.Frames`.
                 Note: Hardware encoders support: None.
                 """
                 
@@ -696,8 +696,8 @@ class Param:
                 H.264 Video: Rate control method.
                 
                 This parameter is an integer.
-                The supported values are defined in RateControlMethod enum.
-                The default value is RateControlMethod.ABR.
+                The supported values are defined in the :class:`H264RateControlMethod` enum.
+                The default value is :attr:`H264RateControlMethod.ABR`.
                 Note: Hardware encoders support: Intel QuickSync, AMD VCE, NVIDIA NVENC.
                 """
                 
@@ -788,8 +788,8 @@ class Param:
                 
                 This parameter is an integer.
                 
-                The supported values are defined in the H265Profile enum.
-                The default value is H265Profile.Main.
+                The supported values are defined in the :class:`H265Profile` enum.
+                The default value is :attr:`H265Profile.Main`.
                 
                 Supported profiles: Main, Main10
                 Sets the value of the profile_idc syntax element.
@@ -803,7 +803,7 @@ class Param:
                 
                 Sets the value of the level_idc syntax element.
                 
-                The default value is H265Level.None (level is selected automatically).
+                The default value is :attr:`H265Level.None` (level is selected automatically).
                 Note: Similar with the Profile, Level specifies the capabilities a decoder must fulfill to decode a bitstream of a certain level.
                 Most level restrictions are driven by memory restrictions and set restrictions such as resolution supported, maximum number of references, frame rate etc.
                 """
@@ -812,8 +812,8 @@ class Param:
                 """
                 H.265 Video: Bitrate tier.
                 
-                The supported values are defined in the H265Tier enum.
-                The default value is H265Tier.Main
+                The supported values are defined in the :class:`H265Tier` enum.
+                The default value is :attr:`H265Tier.Main`
                 
                 The High tier specifies higher bitrate than the Main tier.
                 The High tier is not supported under level 4.
