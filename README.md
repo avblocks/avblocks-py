@@ -12,7 +12,7 @@ AVBlocks Python SDK is not distributed via PyPI. Install it directly from the Gi
 
 ## Prerequisites
 
-- Python 3.9 or higher
+- Python 3.12 or higher
 - pip or uv package manager
 
 ## Install with pip
@@ -422,17 +422,17 @@ See [samples/README.md](./samples/README.md) for a complete list of working exam
 
 ### macOS
 
-1. [Download Core and Assets on macOS](./docs/download-avblocks-core-and-assets-mac.md) 
+1. Run `./download-sdk-and-assets.sh`, or see [Download Core and Assets on macOS](./docs/download-avblocks-core-and-assets-mac.md) 
 2. [Setup for macOS](./docs/setup-mac.md)
 
 ### Linux
 
-1. [Download Core and Assets on Linux](./docs/download-avblocks-core-and-assets-linux.md)
+1. Run `./download-sdk-and-assets.sh`, or see [Download Core and Assets on Linux](./docs/download-avblocks-core-and-assets-linux.md)
 2. [Setup for Linux](./docs/setup-linux.md)
 
 ### Windows
 
-1. [Download Core and Assets on Windows](./docs/download-avblocks-core-and-assets-windows.md) 
+1. Run `./download-sdk-and-assets.ps1`, or see [Download Core and Assets on Windows](./docs/download-avblocks-core-and-assets-windows.md) 
 2. [Setup for Windows](./docs/setup-windows.md)
 
 ## Run

@@ -6,14 +6,27 @@ Change to the directory where you cloned this repository:
 cd avblocks-py
 ```
 
+## Download script
+
+Run [download-sdk-and-assets.sh](../download-sdk-and-assets.sh) from the repository root. It detects the host architecture (Apple Silicon `arm64` or Intel `x64`), downloads the matching SDK into `sdk/` and the demo assets into `assets/`:
+
+```bash
+./download-sdk-and-assets.sh
+```
+
+Alternatively, follow the manual steps below.
+
 ## AVBlocks Core
 
 In the script below, change the tag to the release that you need. For the available versions check the [AVBlocks Core](https://github.com/avblocks/avblocks-core/releases) releases.   
 
+Builds are available for Apple Silicon (`darwin-arm64`) and Intel (`darwin`, x64). Use `uname -m` to check your machine: `arm64` means Apple Silicon, `x86_64` means Intel.
+
 ```bash
 # select version and platform
+# "darwin-arm64" for Apple Silicon (M1/M2/M3/M4/M5), "darwin" for Intel (x64)
 tag="v3.4.0-demo.1"
-platform="darwin"
+platform="darwin-arm64"
 
 # download
 mkdir -p ./sdk

@@ -6,12 +6,25 @@ Change to the directory where you cloned this repository:
 cd avblocks-py
 ```
 
+## Download script
+
+Run [download-sdk-and-assets.sh](../download-sdk-and-assets.sh) from the repository root. It detects the host architecture (`arm64` or `x64`), downloads the matching SDK into `sdk/` and the demo assets into `assets/`:
+
+```bash
+./download-sdk-and-assets.sh
+```
+
+Alternatively, follow the manual steps below.
+
 ## AVBlocks Core
 
 In the script below, change the tag to the release that you need. For the available versions check the [AVBlocks Core](https://github.com/avblocks/avblocks-core/releases) releases.   
 
+Builds are available for ARM64 (`linux-arm64`) and x64 (`linux`). Use `uname -m` to check your machine: `aarch64` means ARM64, `x86_64` means x64.
+
 ```bash
 # select version and platform
+# "linux-arm64" for ARM64 (aarch64), "linux" for x64
 tag="v3.4.0-demo.1"
 platform="linux"
 
