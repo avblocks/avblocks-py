@@ -3,6 +3,7 @@ Native C API bindings for AVBlocks.
 """
 
 import os
+import platform
 import sys
 import ctypes
 from ctypes import c_bool, c_int32, c_char_p, c_void_p, c_double
@@ -27,38 +28,6 @@ class NativeLibrary:
     
     def _load_library(self):
         """Load the native library from the directory specified in environment variable."""
-        lib_path = os.environ.get('AVBLOCKS_CORE_PATH')
-        
-        if not lib_path:
-            # Try default locations based on platform
-            if sys.platform == 'darwin':
-                lib_name = 'libAVBlocks.dylib'
-            elif sys.platform == 'linux':
-                lib_name = 'libAVBlocks64.so'
-            elif sys.platform == 'win32':
-                lib_name = 'AVBlocks64.dll'
-            else:
-                raise RuntimeError(f"Unsupported platform: {sys.platform}")
-            
-            # Look in common locations
-            search_paths = [
-                Path(__file__).parent.parent.parent / 'sdk' / 'lib' / 'x64',
-                Path('/usr/local/lib'),
-                Path('/usr/lib'),
-            ]
-            
-            for path in search_paths:
-                candidate = path / lib_name
-                if candidate.exists():
-                    lib_path = str(path)
-                    break
-        
-        if not lib_path:
-            raise RuntimeError(
-                "AVBlocks library not found. Please set AVBLOCKS_CORE_PATH "
-                "environment variable to point to the library directory."
-            )
-        
         # Determine library name based on platform
         if sys.platform == 'darwin':
             lib_name = 'libAVBlocks.dylib'
@@ -68,7 +37,47 @@ class NativeLibrary:
             lib_name = 'AVBlocks64.dll'
         else:
             raise RuntimeError(f"Unsupported platform: {sys.platform}")
-        
+
+        if sys.maxsize <= 2**32:
+            raise RuntimeError(
+                "Unsupported Python build: 32-bit Python detected. "
+                "A 64-bit Python (arm64 or x64) is required."
+            )
+
+        lib_path =os.environ.get('AVBLOCKS_CORE_PATH')
+
+        if not lib_path:
+            # Every platform ships an arm64 or x64 folder in sdk/lib
+            machine = platform.machine().lower()
+            if machine in ('arm64', 'aarch64'):
+                arch = 'arm64'
+            elif machine in ('x86_64', 'amd64', 'x64'):
+                arch = 'x64'
+            else:
+                raise RuntimeError(
+                    f"Unsupported architecture: {platform.machine()}. "
+                    "Only arm64 and x64 are supported."
+                )
+
+            # Look in common locations
+            search_paths = [
+                Path(__file__).parent.parent.parent / 'sdk' / 'lib' / arch,
+                Path('/usr/local/lib'),
+                Path('/usr/lib'),
+            ]
+
+            for path in search_paths:
+                candidate = path / lib_name
+                if candidate.exists():
+                    lib_path = str(path)
+                    break
+
+        if not lib_path:
+            raise RuntimeError(
+                "AVBlocks library not found. Please set AVBLOCKS_CORE_PATH "
+                "environment variable to point to the library directory."
+            )
+
         lib_file = Path(lib_path) / lib_name
         if not lib_file.exists():
             raise RuntimeError(
