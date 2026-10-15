@@ -22,6 +22,19 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 
 ## Sample Categories
 
+### Simple Samples
+
+Getting-started samples with hardcoded file paths and no command line options. Each sample README has the `curl` command that downloads its input from the Internet Archive.
+
+| Sample | Description |
+|--------|-------------|
+| [simple_converter](simple_converter/) | Transcode an H.264/AVC video to H.265/HEVC |
+| [simple_audio_upsample](simple_audio_upsample/) | Upsample an MP3 audio clip from 44.1 KHz to 48 KHz |
+| [simple_video_crop](simple_video_crop/) | Crop a 16:9 video to 4:3 |
+| [simple_video_framerate](simple_video_framerate/) | Change the frame rate of a video from 24 fps to 30 fps |
+| [simple_video_pad](simple_video_pad/) | Fit a 16:9 video into a 4:3 frame by resizing and padding |
+| [simple_video_upscale](simple_video_upscale/) | Scale a 480p video up to Full HD 1080p |
+
 ### Audio Decoding
 
 | Sample | Description |
@@ -67,6 +80,7 @@ python -m samples.dec_aac_adts_file.dec_aac_adts_file --help
 |--------|-------------|
 | [enc_avc_file](enc_avc_file/) | Encode raw YUV to H.264/AVC |
 | [enc_avc_pull](enc_avc_pull/) | Encode raw YUV to H.264 using pull mode |
+| [enc_avc_push](enc_avc_push/) | Encode raw YUV to H.264 using push mode |
 | [enc_hevc_file](enc_hevc_file/) | Encode raw YUV to H.265/HEVC |
 | [enc_hevc_pull](enc_hevc_pull/) | Encode raw YUV to H.265 using pull mode |
 | [enc_vp8_file](enc_vp8_file/) | Encode raw YUV to VP8 (IVF) |
@@ -126,7 +140,7 @@ Pull encoded/decoded samples one at a time for custom processing:
 
 ### Push Mode
 Push data to the encoder/decoder manually:
-- `enc-aac-adts-push`, `enc-mp3-push`
+- `enc-aac-adts-push`, `enc-avc-push`, `enc-mp3-push`
 - Useful for real-time encoding from live sources
 
 ## Common Options

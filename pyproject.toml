@@ -16,6 +16,14 @@ dependencies = [
 ]
 
 [project.scripts]
+# Simple Samples
+simple-converter = "samples.simple_converter.simple_converter:main"
+simple-audio-upsample = "samples.simple_audio_upsample.simple_audio_upsample:main"
+simple-video-crop = "samples.simple_video_crop.simple_video_crop:main"
+simple-video-framerate = "samples.simple_video_framerate.simple_video_framerate:main"
+simple-video-pad = "samples.simple_video_pad.simple_video_pad:main"
+simple-video-upscale = "samples.simple_video_upscale.simple_video_upscale:main"
+
 # Audio Decoding
 dec-aac-adts-file = "samples.dec_aac_adts_file.dec_aac_adts_file:main"
 dec-aac-adts-pull = "samples.dec_aac_adts_pull.dec_aac_adts_pull:main"
@@ -49,6 +57,7 @@ enc-vorbis-file = "samples.enc_vorbis_file.enc_vorbis_file:main"
 # Video Encoding
 enc-avc-file = "samples.enc_avc_file.enc_avc_file:main"
 enc-avc-pull = "samples.enc_avc_pull.enc_avc_pull:main"
+enc-avc-push = "samples.enc_avc_push.enc_avc_push:main"
 enc-hevc-file = "samples.enc_hevc_file.enc_hevc_file:main"
 enc-hevc-pull = "samples.enc_hevc_pull.enc_hevc_pull:main"
 enc-vp8-file = "samples.enc_vp8_file.enc_vp8_file:main"
